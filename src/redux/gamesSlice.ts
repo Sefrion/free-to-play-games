@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAppAsyncThunk } from './hooks';
 import { axiosClient } from '@/lib/axiosClient';
+import { RootState } from './store';
 
 interface Game {
 	id: number;
@@ -50,8 +51,23 @@ const gamesSlice = createSlice({
 
 export default gamesSlice.reducer;
 
-export const fetchAllGames = createAppAsyncThunk('games/fetchAll', async () => {
-	const response = await axiosClient.get<Game[]>('/games');
-	console.log(response);
-	return response.data;
-});
+export const fetchAllGames = createAppAsyncThunk(
+	'games/fetchAll',
+	async () => {
+		const response = await axiosClient.get<Game[]>('/games');
+		console.log(response);
+		return response.data;
+	},
+	{
+		condition(arg, thunkApi) {
+			const status = selectGameStatus(thunkApi.getState());
+			if (status !== 'idle') {
+				return false;
+			}
+		}
+	}
+);
+
+export const selectAllGames = (state: RootState) => state.games.data;
+export const selectGameStatus = (state: RootState) => state.games.status;
+export const selectGameError = (state: RootState) => state.games.error;
