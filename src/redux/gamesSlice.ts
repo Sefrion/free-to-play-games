@@ -3,7 +3,7 @@ import { createAppAsyncThunk } from './hooks';
 import { axiosClient } from '@/lib/axiosClient';
 import { RootState } from './store';
 
-interface Game {
+export interface Game {
 	id: number;
 	title: string;
 	thumbnail: string;
@@ -55,7 +55,6 @@ export const fetchAllGames = createAppAsyncThunk(
 	'games/fetchAll',
 	async () => {
 		const response = await axiosClient.get<Game[]>('/games');
-		console.log(response);
 		return response.data;
 	},
 	{

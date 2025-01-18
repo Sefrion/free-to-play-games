@@ -1,3 +1,4 @@
+import SliderComponent from '@/components/SliderComponent';
 import {
 	fetchAllGames,
 	selectAllGames,
@@ -20,11 +21,17 @@ const HomePage = () => {
 		}
 	}, [dispatch, status]);
 
-	if (error) {
-		return <h1>{error}</h1>;
+	if (status === 'pending') {
+		return <h1>Loading...</h1>;
+	} else if (status === 'failed') {
+		return `Failed to fetch games with error: ${error}`;
 	}
 
-	return <div>HomePage</div>;
+	return (
+		<>
+			<SliderComponent games={games} />
+		</>
+	);
 };
 
 export default HomePage;
