@@ -70,3 +70,5 @@ export const fetchAllGames = createAppAsyncThunk(
 export const selectAllGames = (state: RootState) => state.games.data;
 export const selectGameStatus = (state: RootState) => state.games.status;
 export const selectGameError = (state: RootState) => state.games.error;
+export const selectSingleGameById = (state: RootState, gameId: number) =>
+	state.games.data.find((game) => game.id === gameId);
