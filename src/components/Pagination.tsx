@@ -47,8 +47,8 @@ const Pagination = ({ games, onClick }: PaginationProps) => {
 					onClick={() => handlePageChange(page)}
 					className={cn(
 						currentPage === page
-							? 'bg-white text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white'
-							: 'text-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'
+							? 'bg-white text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white mx-0.5'
+							: 'text-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500 mx-0.5'
 					)}
 				>
 					{page}

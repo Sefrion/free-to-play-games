@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import type { Game } from '@/redux/gamesSlice';
+import { useEffect, useState } from 'react';
 
 const Slide = ({ game }: { game: Game }) => (
 	<CarouselItem className='sm:basis-1/2 xl:basis-1/3'>
@@ -27,13 +28,26 @@ const Slide = ({ game }: { game: Game }) => (
 );
 
 const SliderComponent = ({ games }: { games: Game[] }) => {
-	const gamesArr = games.slice(0, 7);
+	const [visibleGames, setVisibleGames] = useState<Game[]>([]);
+
+	useEffect(() => {
+		sortByYear(games);
+	}, [games]);
+
+	const sortByYear = (games: Game[]): void => {
+		const sortedGames = [...games].sort(
+			(a, b) =>
+				new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+		);
+		setVisibleGames(sortedGames.slice(0, 5));
+	};
 
 	return (
-		<section>
-			<Carousel opts={{ loop: true }} className='py-16 container-center'>
+		<section className='py-16 container-center'>
+			<h2 className='my-2 text-3xl font-bold text-blue-500'>Latest Releases</h2>
+			<Carousel opts={{ loop: true }}>
 				<CarouselContent>
-					{gamesArr.map((game) => (
+					{visibleGames.map((game) => (
 						<Slide key={game.id} game={game} />
 					))}
 				</CarouselContent>
