@@ -40,9 +40,20 @@ const gamesSlice = createSlice({
 			})
 			.addCase(fetchAllGames.fulfilled, (state, action) => {
 				state.status = 'succeeded';
-				state.data.push(...action.payload);
+				state.data = action.payload;
 			})
 			.addCase(fetchAllGames.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.error.message ?? 'Unknown Error';
+			})
+			.addCase(fetchGamesFromCategory.pending, (state) => {
+				state.status = 'pending';
+			})
+			.addCase(fetchGamesFromCategory.fulfilled, (state, action) => {
+				state.status = 'succeeded';
+				state.data = action.payload;
+			})
+			.addCase(fetchGamesFromCategory.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.error.message ?? 'Unknown Error';
 			});
@@ -56,14 +67,22 @@ export const fetchAllGames = createAppAsyncThunk(
 	async () => {
 		const response = await axiosClient.get<Game[]>('/games');
 		return response.data;
-	},
-	{
-		condition(arg, thunkApi) {
-			const status = selectGameStatus(thunkApi.getState());
-			if (status !== 'idle') {
-				return false;
-			}
-		}
+	}
+	// {
+	// 	condition(arg, thunkApi) {
+	// 		const status = selectGameStatus(thunkApi.getState());
+	// 		if (status !== 'idle') {
+	// 			return false;
+	// 		}
+	// 	}
+	// }
+);
+
+export const fetchGamesFromCategory = createAppAsyncThunk(
+	'games/fetchCategory',
+	async (category: string) => {
+		const response = await axiosClient.get<Game[]>(`/games?category=${category}`);
+		return response.data;
 	}
 );
 

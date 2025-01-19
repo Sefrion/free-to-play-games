@@ -5,6 +5,7 @@ import {
 	NavigationMenuItem
 } from './ui/navigation-menu';
 import { Separator } from './ui/separator';
+import CategoryDropdown from './CategoryDropdown';
 
 const Header = () => {
 	return (
@@ -21,7 +22,7 @@ const Header = () => {
 								<Link to='/'>Home</Link>
 							</NavigationMenuItem>
 							<NavigationMenuItem className='p-2 border rounded-md hover:bg-white hover:text-black'>
-								<Link to='/categories'>Categories</Link>
+								<CategoryDropdown />
 							</NavigationMenuItem>
 						</NavigationMenuList>
 					</NavigationMenu>

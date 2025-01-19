@@ -17,10 +17,8 @@ const HomePage = () => {
 	const error = useAppSelector(selectGameError);
 
 	useEffect(() => {
-		if (status === 'idle') {
-			dispatch(fetchAllGames());
-		}
-	}, [dispatch, status]);
+		dispatch(fetchAllGames());
+	}, [dispatch]);
 
 	if (status === 'pending') {
 		return <h1>Loading...</h1>;
