@@ -1,3 +1,4 @@
+import AllGames from '@/components/AllGames';
 import SliderComponent from '@/components/SliderComponent';
 import {
 	fetchAllGames,
@@ -30,6 +31,7 @@ const HomePage = () => {
 	return (
 		<>
 			<SliderComponent games={games} />
+			<AllGames games={games} />
 		</>
 	);
 };

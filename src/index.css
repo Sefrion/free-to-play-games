@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .container-center {
-	@apply max-w-[1150px] mx-auto;
+	@apply max-w-[1126px] mx-auto sm:px-3;
 }
 
 @layer base {
