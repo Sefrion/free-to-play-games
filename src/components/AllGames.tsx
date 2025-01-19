@@ -8,7 +8,7 @@ interface AllGamesProps {
 }
 
 const AllGames = ({ games }: AllGamesProps) => {
-	const [visibleGames, setVisibleGames] = useState(games.slice(0, 9));
+	const [visibleGames, setVisibleGames] = useState<Game[]>(games.slice(0, 12));
 
 	return (
 		<section className='py-5 container-center'>
