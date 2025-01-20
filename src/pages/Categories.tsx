@@ -1,10 +1,13 @@
 import GameCard from '@/components/GameCard';
 import Pagination from '@/components/Pagination';
+import Spinner from '@/components/Spinner';
 import { Button } from '@/components/ui/button';
 import {
 	fetchGamesFromCategory,
 	Game,
-	selectAllGames
+	selectAllGames,
+	selectGameError,
+	selectGameStatus
 } from '@/redux/gamesSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useEffect, useState } from 'react';
@@ -15,6 +18,8 @@ const CategoriesPage = () => {
 
 	const dispatch = useAppDispatch();
 	const games = useAppSelector(selectAllGames);
+	const status = useAppSelector(selectGameStatus);
+	const error = useAppSelector(selectGameError);
 
 	const [visibleGames, setVisibleGames] = useState<Game[]>(games.slice(0, 12));
 
@@ -32,6 +37,12 @@ const CategoriesPage = () => {
 		setVisibleGames(sortedGames.slice(0, 12));
 	};
 
+	if (status === 'pending') {
+		return <Spinner />;
+	} else if (status === 'failed') {
+		return `Failed to fetch games with error: ${error}`;
+	}
+
 	return (
 		<section className='py-5 container-center'>
 			<h1 className='mb-4 ml-2 text-3xl font-bold text-blue-500'>
@@ -40,7 +51,7 @@ const CategoriesPage = () => {
 			<div className='flex justify-start gap-2 my-2'>
 				<Button
 					onClick={() => sortByYear(games)}
-					className='px-2 py-1 text-sm font-semibold text-white bg-blue-500 rounded-md'
+					className='ml-0.5 px-2 py-1 text-sm font-semibold text-white bg-blue-500 rounded-md'
 				>
 					Sort By Year
 				</Button>

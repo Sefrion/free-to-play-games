@@ -1,5 +1,6 @@
 import { Game } from '@/redux/gamesSlice';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
 interface GameCardProps {
 	game: Game;
@@ -10,7 +11,11 @@ const GameCard = ({ game }: GameCardProps) => {
 		<Card className='flex flex-col overflow-hidden text-white bg-blue-500 '>
 			<img src={game.thumbnail} alt='game thumbnail' className='w-full' />
 			<CardContent className='flex-grow'>
-				<CardTitle className='my-2 text-xl font-bold'>{game.title}</CardTitle>
+				<Link to={`/game/${game.id}`}>
+					<CardTitle className='my-2 text-xl font-bold hover:underline'>
+						{game.title}
+					</CardTitle>
+				</Link>
 				<p>
 					<span className='font-semibold'>Platform:</span> {game.platform}
 				</p>

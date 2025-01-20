@@ -1,5 +1,6 @@
 import AllGames from '@/components/AllGames';
 import SliderComponent from '@/components/SliderComponent';
+import Spinner from '@/components/Spinner';
 import {
 	fetchAllGames,
 	selectAllGames,
@@ -21,7 +22,7 @@ const HomePage = () => {
 	}, [dispatch]);
 
 	if (status === 'pending') {
-		return <h1>Loading...</h1>;
+		return <Spinner />;
 	} else if (status === 'failed') {
 		return `Failed to fetch games with error: ${error}`;
 	}
