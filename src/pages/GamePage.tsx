@@ -8,6 +8,7 @@ import {
 	selectGameStatus
 } from '@/redux/gamesSlice';
 import Spinner from '@/components/Spinner';
+import BackButton from '@/components/BackButton';
 
 const GamePage = () => {
 	const { id } = useParams();
@@ -29,6 +30,7 @@ const GamePage = () => {
 
 	return (
 		<section className='px-1 py-5 container-center'>
+			<BackButton />
 			<article className='flex flex-col items-start justify-center w-full gap-4 md:flex-row'>
 				<div className='w-full md:w-1/2'>
 					<img
