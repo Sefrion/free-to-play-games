@@ -45,13 +45,13 @@ const CategoriesPage = () => {
 
 	return (
 		<section className='py-5 container-center'>
-			<h1 className='mb-4 ml-2 text-3xl font-bold text-blue-500'>
+			<h1 className='mb-4 ml-2 text-3xl font-bold text-blue-500 dark:text-purple-600'>
 				All Free To Play Games | {toUpper(category!)} Category
 			</h1>
 			<div className='flex justify-start gap-2 my-2'>
 				<Button
 					onClick={() => sortByYear(games)}
-					className='ml-0.5 px-2 py-1 text-sm font-semibold text-white bg-blue-500 rounded-md'
+					className='ml-0.5 px-2 py-1 text-sm font-semibold text-white bg-blue-500 rounded-md dark:bg-purple-600'
 				>
 					Sort By Year
 				</Button>

@@ -8,7 +8,7 @@ interface GameCardProps {
 
 const GameCard = ({ game }: GameCardProps) => {
 	return (
-		<Card className='flex flex-col overflow-hidden text-white bg-blue-500 '>
+		<Card className='flex flex-col overflow-hidden text-white bg-blue-500 dark:bg-purple-600'>
 			<img src={game.thumbnail} alt='game thumbnail' className='w-full' />
 			<CardContent className='flex-grow'>
 				<Link to={`/game/${game.id}`}>

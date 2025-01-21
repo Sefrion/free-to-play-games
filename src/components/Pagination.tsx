@@ -37,7 +37,7 @@ const Pagination = ({ games, onClick }: PaginationProps) => {
 			<Button
 				onClick={() => handlePageChange(currentPage - 1)}
 				disabled={currentPage === 1}
-				className='mr-2 text-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'
+				className='mr-2 text-white bg-blue-500 dark:bg-purple-600 dark:text-white dark:border-purple-600 dark:hover:bg-white dark:hover:text-purple-600 dark:hover:border dark:hover:border-purple-600 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'
 			>
 				<ChevronLeft />
 			</Button>
@@ -47,8 +47,8 @@ const Pagination = ({ games, onClick }: PaginationProps) => {
 					onClick={() => handlePageChange(page)}
 					className={cn(
 						currentPage === page
-							? 'bg-white text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white mx-0.5'
-							: 'text-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500 mx-0.5'
+							? ' bg-white text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white mx-0.5 dark:bg-white dark:text-purple-600 dark:border-purple-600'
+							: 'text-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500 mx-0.5  dark:bg-purple-600 dark:text-white dark:border-purple-600 dark:hover:bg-white dark:hover:text-purple-600 dark:hover:border dark:hover:border-purple-600'
 					)}
 				>
 					{page}
@@ -57,7 +57,7 @@ const Pagination = ({ games, onClick }: PaginationProps) => {
 			<Button
 				onClick={() => handlePageChange(currentPage + 1)}
 				disabled={currentPage === totalPages}
-				className='ml-2 text-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'
+				className='ml-2 text-white bg-blue-500 dark:bg-purple-600 dark:text-white dark:border-purple-600 dark:hover:bg-white dark:hover:text-purple-600 dark:hover:border dark:hover:border-purple-600 hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'
 			>
 				<ChevronRight />
 			</Button>
