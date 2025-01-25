@@ -7,3 +7,5 @@ export const axiosClient = axios.create({
 		'x-rapidapi-host': import.meta.env.RAPIDAPI_HOST as string
 	}
 });
+
+// 'https://www.freetogame.com/api'
