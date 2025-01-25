@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
 	fetchSingleGame,
@@ -9,10 +9,13 @@ import {
 } from '@/redux/gamesSlice';
 import Spinner from '@/components/Spinner';
 import BackButton from '@/components/BackButton';
+import Gallery from '@/components/Gallery';
 
 const GamePage = () => {
 	const { id } = useParams();
 	const dispatch = useAppDispatch();
+
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		dispatch(fetchSingleGame(+id!));
@@ -72,8 +75,13 @@ const GamePage = () => {
 			</div>
 			<div className='flex flex-wrap items-center justify-center gap-1 mt-3 md:flex-nowrap'>
 				{game?.screenshots.map((screenshot) => (
-					<div className='flex-1/3' key={screenshot.id}>
+					<div className='cursor-pointer flex-1/3' key={screenshot.id}>
 						<img
+							onClick={() => {
+								setIsOpen(true);
+								window.scrollTo(0, 0);
+								document.body.style.overflow = 'hidden';
+							}}
 							src={screenshot.image}
 							alt='screenshot'
 							className='my-2 rounded-md '
@@ -82,6 +90,12 @@ const GamePage = () => {
 					</div>
 				))}
 			</div>
+			{isOpen && window.screen.width > 767 && (
+				<Gallery
+					images={game?.screenshots.map((game) => game.image) || []}
+					opened={setIsOpen}
+				/>
+			)}
 		</section>
 	);
 };
